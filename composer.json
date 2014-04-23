@@ -1,0 +1,23 @@
+{
+    "name": "devmachine/guzzle-markus-client",
+    "type": "library",
+    "description": "Guzzle client for Markus API - http://forumcinemas.lv/XML.",
+    "keywords": [ "markus", "api", "guzzle" ],
+    "homepage": "http://devmachine.net",
+    "license": [ "MIT" ],
+    "authors": [
+        { "name": "Dmitri Lakachauskis", "email": "dmitri@devmachine.net" }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "guzzlehttp/guzzle-services": "~0.2"
+    },
+    "autoload": {
+        "psr-4": { "Devmachine\\Guzzle\\Markus\\": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
