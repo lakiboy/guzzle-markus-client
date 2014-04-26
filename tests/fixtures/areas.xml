@@ -1,0 +1,10 @@
+<TheatreAreas>
+    <TheatreArea>
+        <ID>1</ID>
+        <Name>Markus Cinema One</Name>
+    </TheatreArea>
+    <TheatreArea>
+        <ID>2</ID>
+        <Name>Markus Cinema Two</Name>
+    </TheatreArea>
+</TheatreAreas>

@@ -1,2 +1,5 @@
 /.idea
+/bin
+/vendor
+/composer.lock
 .DS_Store

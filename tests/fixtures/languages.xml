@@ -1,0 +1,26 @@
+<Languages>
+    <Language>
+        <ID>1</ID>
+        <Name>Latvian</Name>
+        <LocalName>Latviski</LocalName>
+        <NameInLanguage>Latviešu valodā</NameInLanguage>
+        <ISOCode>lat</ISOCode>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+    </Language>
+    <Language>
+        <ID>2</ID>
+        <Name>Russian</Name>
+        <LocalName>Krievu</LocalName>
+        <NameInLanguage>Krievu valodā</NameInLanguage>
+        <ISOCode>rus</ISOCode>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+    </Language>
+    <Language>
+        <ID>3</ID>
+        <Name>English</Name>
+        <LocalName>Angļu</LocalName>
+        <NameInLanguage>Angļu valodā</NameInLanguage>
+        <ISOCode>eng</ISOCode>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+    </Language>
+</Languages>
