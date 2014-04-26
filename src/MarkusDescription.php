@@ -27,9 +27,37 @@ class MarkusDescription extends Description
                     'uri' => 'Languages',
                     'responseModel' => 'LanguagesOutput',
                     'documentationUrl' => self::$documentationUrl
+                ],
+                'schedule' => [
+                    'httpMethod' => 'GET',
+                    'uri' => 'ScheduleDates',
+                    'responseModel' => 'ScheduleOutput',
+                    'documentationUrl' => self::$documentationUrl,
+                    'parameters' => [
+                        'area' => [
+                            '$ref' => 'AreaParameter',
+                            'description' => 'Defaults to first area in the list.'
+                        ]
+                    ]
+                ],
+                'articleCategories' => [
+                    'httpMethod' => 'GET',
+                    'uri' => 'NewsCategories',
+                    'responseModel' => 'ArticleCategoriesOutput',
+                    'documentationUrl' => self::$documentationUrl,
+                    'parameters' => [
+                        'area' => [
+                            '$ref' => 'AreaParameter',
+                        ]
+                    ]
                 ]
             ],
             'models' => [
+                'AreaParameter' => [
+                    'type' => 'integer',
+                    'location' => 'query'
+                ],
+
                 'AreasOutput' => [
                     'type' => 'object',
                     'properties' => [
@@ -87,6 +115,46 @@ class MarkusDescription extends Description
                                         'type' => 'string',
                                         'sentAs' => 'ISOCode'
                                     ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'ScheduleOutput' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'items' => [
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'dateTime',
+                            'items' => [
+                                'type' => 'string'
+                            ]
+                        ]
+                    ]
+                ],
+                'ArticleCategoriesOutput' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'items' => [
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'NewsArticleCategory',
+                            'items' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'ID'
+                                    ],
+                                    'name' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'Name'
+                                    ],
+                                    'article_count' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'NewsArticleCount'
+                                    ],
                                 ]
                             ]
                         ]

@@ -5,6 +5,7 @@ namespace Devmachine\Tests\Guzzle\Markus;
 use Devmachine\Guzzle\Markus\MarkusClient;
 use Devmachine\Guzzle\Markus\MarkusDescription;
 use GuzzleHttp\Adapter\MockAdapter;
+use GuzzleHttp\Adapter\TransactionInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
@@ -53,6 +54,45 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('rus', $result['items'][1]['three_letter_code']);
     }
 
+    public function testSchedule()
+    {
+        $this->mock->setResponse(function (TransactionInterface $transaction) {
+            $query = $transaction->getRequest()->getQuery();
+
+            if ($query->hasKey('area')) {
+                return $this->createResponse('schedule_' . $query->get('area'));
+            }
+
+            return $this->createResponse('schedule');
+        });
+
+        // Returns result with 2 items.
+        $result = $this->client->schedule(array('area' => 1000));
+
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(2, $result['items']);
+        $this->assertEquals('2014-05-01T00:00:00', $result['items'][0]);
+        $this->assertEquals('2014-05-10T00:00:00', $result['items'][1]);
+
+        // Returns result with 7 items.
+        $result = $this->client->schedule();
+
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(7, $result['items']);
+    }
+
+    public function testArticleCategories()
+    {
+        $result = $this->getClient('article_categories')->articleCategories();
+
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(3, $result['items']);
+
+        $this->assertEquals(1005, $result['items'][0]['id']);
+        $this->assertEquals('Filmu ziņas', $result['items'][0]['name']);
+        $this->assertEquals(10, $result['items'][0]['article_count']);
+    }
+
     /**
      * Set mock response from file.
      *
@@ -62,10 +102,15 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
      */
     private function getClient($fixture)
     {
-        $responseXml = __DIR__ . '/fixtures/' . $fixture . '.xml';
-
-        $this->mock->setResponse(new Response(200, [], Stream::factory(file_get_contents($responseXml))));
+        $this->mock->setResponse($this->createResponse($fixture));
 
         return $this->client;
+    }
+
+    private function createResponse($fixture)
+    {
+        $responseXml = __DIR__ . '/fixtures/' . $fixture . '.xml';
+
+        return new Response(200, [], Stream::factory(file_get_contents($responseXml)));
     }
 }

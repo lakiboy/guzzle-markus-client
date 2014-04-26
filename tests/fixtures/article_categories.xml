@@ -1,0 +1,17 @@
+<NewsCategories>
+    <NewsArticleCategory>
+        <ID>1005</ID>
+        <Name>Filmu ziņas</Name>
+        <NewsArticleCount>10</NewsArticleCount>
+    </NewsArticleCategory>
+    <NewsArticleCategory>
+        <ID>1026</ID>
+        <Name>Kinoteātra ziņas</Name>
+        <NewsArticleCount>9</NewsArticleCount>
+    </NewsArticleCategory>
+    <NewsArticleCategory>
+        <ID>1019</ID>
+        <Name>Speciālie piedāvājumi</Name>
+        <NewsArticleCount>2</NewsArticleCount>
+    </NewsArticleCategory>
+</NewsCategories>

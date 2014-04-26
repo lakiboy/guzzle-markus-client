@@ -9,6 +9,8 @@ use GuzzleHttp\Command\Model;
 /**
  * @method Model areas()
  * @method Model languages()
+ * @method Model schedule()
+ * @method Model articleCategories()
  */
 class MarkusClient extends GuzzleClient
 {
