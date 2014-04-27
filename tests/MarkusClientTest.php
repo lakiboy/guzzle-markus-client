@@ -72,8 +72,8 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('items', $result);
         $this->assertCount(2, $result['items']);
-        $this->assertEquals('2014-05-01T00:00:00', $result['items'][0]);
-        $this->assertEquals('2014-05-10T00:00:00', $result['items'][1]);
+        $this->assertEquals('2014-05-01', $result['items'][0]);
+        $this->assertEquals('2014-05-10', $result['items'][1]);
 
         // Returns result with 7 items.
         $result = $this->client->schedule();
@@ -101,7 +101,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('items', $result);
         $this->assertCount(3, $result['items']);
 
-        $this->assertEquals('2014-03-26T00:00:00', $result['items'][2]['published']);
+        $this->assertEquals('2014-03-26', $result['items'][2]['published']);
         $this->assertEquals('UUS EESTI MÄNGUFILM "RISTTUULES" SINU KINOS', $result['items'][2]['title']);
         $this->assertEquals('Alates tänasest ootame kõiki vaatama uut eesti mängufilmi RISTTUULES. Martti Helde lavastatud mängufilm räägib eestlasi tabanud kuritööst linastub alates 26.03 Tallinnas ja Tartus ning alates 27.03 Narvas.', $result['items'][2]['abstract']);
         $this->assertStringStartsWith('<p style="text-align: justify;">See on film, mis taastab visuaalselt igaveseks', $result['items'][2]['content']);
@@ -129,7 +129,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         ]);
 
         // Test query parameters where actually sent.
-        $this->assertEquals(array('area', 'eventID', 'categoryID'), $history->getLastRequest()->getQuery()->getKeys());
+        $this->assertEquals(['area', 'eventID', 'categoryID'], $history->getLastRequest()->getQuery()->getKeys());
     }
 
     /**

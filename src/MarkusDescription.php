@@ -83,6 +83,13 @@ class MarkusDescription extends Description
                     'sentAs' => 'eventID'
                 ],
 
+                'DateProperty' => [
+                    'type' => 'string',
+                    'filters' => [
+                        ['method' => 'Devmachine\Guzzle\Markus\Util::formatDate', 'args' => ['@value']],
+                    ],
+                ],
+
                 'AreasOutput' => [
                     'name' => 'items',
                     'type' => 'array',
@@ -143,7 +150,7 @@ class MarkusDescription extends Description
                     'location' => 'xml',
                     'sentAs' => 'dateTime',
                     'items' => [
-                        'type' => 'string'
+                        '$ref' => 'DateProperty'
                     ]
                 ],
                 'ArticleCategoriesOutput' => [
@@ -182,7 +189,7 @@ class MarkusDescription extends Description
                                 'sentAs' => 'Title'
                             ],
                             'published' => [
-                                'type' => 'string',
+                                '$ref' => 'DateProperty',
                                 'sentAs' => 'PublishDate'
                             ],
                             'abstract' => [
