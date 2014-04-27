@@ -79,9 +79,11 @@ class MarkusDescription extends Description
                     'parameters' => [
                         'area' => [
                             '$ref' => 'AreaParameter',
+                            'description' => 'Has no effect when "coming_soon" parameter is set to true.'
                         ],
                         'id' => [
-                            '$ref' => 'EventParameter'
+                            '$ref' => 'EventParameter',
+                            'description' => 'When specified "area" and "coming_soon" parameters have no effect.'
                         ],
                         'include_videos' => [
                             'sentAs' => 'includeVideos',
@@ -89,27 +91,31 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'default' => false,
                             'format' => 'boolean-string',
+                            'description' => 'Include video data.'
                         ],
                         'include_links' => [
                             'sentAs' => 'includeLinks',
                             'type' => 'boolean',
                             'location' => 'query',
                             'default' => false,
-                            'format' => 'boolean-string'
+                            'format' => 'boolean-string',
+                            'description' => 'Include links data.'
                         ],
                         'include_gallery' => [
                             'sentAs' => 'includeGallery',
                             'type' => 'boolean',
                             'location' => 'query',
                             'default' => false,
-                            'format' => 'boolean-string'
+                            'format' => 'boolean-string',
+                            'description' => 'Include gallery data.'
                         ],
                         'all_images' => [
                             'sentAs' => 'includePictures',
                             'type' => 'boolean',
                             'location' => 'query',
                             'default' => false,
-                            'format' => 'boolean-string'
+                            'format' => 'boolean-string',
+                            'description' => 'Fetch all available images (except gallery).'
                         ],
                         'coming_soon' => [
                             'sentAs' => 'listType',
@@ -118,6 +124,37 @@ class MarkusDescription extends Description
                             'default' => false,
                             'filters' => [function ($val) { return $val ? 'ComingSoon' : 'NowInTheatres'; }]
                         ],
+                    ]
+                ],
+                'shows' => [
+                    'httpMethod' => 'GET',
+                    'uri' => 'Schedule',
+                    'responseModel' => 'ShowsOutput',
+                    'documentationUrl' => self::$documentationUrl,
+                    'parameters' => [
+                        'area' => [
+                            '$ref' => 'AreaParameter',
+                            'description' => 'Defaults to first area in the list.'
+                        ],
+                        'event' => [
+                            '$ref' => 'EventParameter',
+                        ],
+                        'date' => [
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'dt',
+                            'filters' => [
+                                ['method' => 'Devmachine\Guzzle\Markus\Util::formatDate', 'args' => ['@value', 'd.m.Y']],
+                            ],
+                        ],
+                        'days_from_date' => [
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'nrOfDays',
+                            'default' => 1,
+                            'minimum' => 1,
+                            'maximum' => 31
+                        ]
                     ]
                 ]
             ],
@@ -508,6 +545,25 @@ class MarkusDescription extends Description
                                         ]
                                     ]
                                 ]
+                            ]
+                        ]
+                    ]
+                ],
+                'ShowsOutput' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'published' => [
+                            'sentAs' => 'PubDate',
+                            '$ref' => 'DateProperty',
+                            'location' => 'xml',
+                        ],
+                        'items' => [
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'Shows',
+                            'items' => [
+                                'type' => 'object',
+                                'sentAs' => 'Show'
                             ]
                         ]
                     ]

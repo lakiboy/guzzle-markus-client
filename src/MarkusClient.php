@@ -13,6 +13,7 @@ use GuzzleHttp\Command\Model;
  * @method Model articleCategories()
  * @method Model articles()
  * @method Model events()
+ * @method Model shows()
  */
 class MarkusClient extends GuzzleClient
 {

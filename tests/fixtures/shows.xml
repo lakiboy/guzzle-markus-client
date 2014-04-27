@@ -1,0 +1,182 @@
+<Schedule>
+    <PubDate>2014-04-27T00:00:00+00:00</PubDate>
+    <Shows>
+        <Show>
+            <ID>190912</ID>
+            <dtAccounting>2014-04-27T00:00:00</dtAccounting>
+            <dttmShowStart>2014-04-27T10:30:00</dttmShowStart>
+            <dttmShowStartUTC>2014-04-27T07:30:00Z</dttmShowStartUTC>
+            <dttmShowEnd>2014-04-27T12:26:00</dttmShowEnd>
+            <dttmShowEndUTC>0001-01-01T00:00:00</dttmShowEndUTC>
+            <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+            <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+            <ShowSalesEndTime>2014-04-27T10:15:00</ShowSalesEndTime>
+            <ShowSalesEndTimeUTC>2014-04-27T07:15:00Z</ShowSalesEndTimeUTC>
+            <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+            <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+            <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+            <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+            <EventID>301296</EventID>
+            <Title>Rio 2</Title>
+            <OriginalTitle>Rio 2</OriginalTitle>
+            <ProductionYear>2014</ProductionYear>
+            <LengthInMinutes>101</LengthInMinutes>
+            <dtLocalRelease>2014-04-18T00:00:00</dtLocalRelease>
+            <Rating>Bez ierobežojuma</Rating>
+            <RatingLabel>U</RatingLabel>
+            <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png</RatingImageUrl>
+            <EventType>Movie</EventType>
+            <Genres>Piedzīvojumu filma, Komēdija, Animācija</Genres>
+            <TheatreID>1032</TheatreID>
+            <TheatreAuditriumID>1197</TheatreAuditriumID>
+            <Theatre>Kino Citadele</Theatre>
+            <TheatreAuditorium>Auditorija 2</TheatreAuditorium>
+            <TheatreAndAuditorium>Kino Citadele, Auditorija 2</TheatreAndAuditorium>
+            <PresentationMethodAndLanguage>3D, Latviešu valodā</PresentationMethodAndLanguage>
+            <PresentationMethod>3D</PresentationMethod>
+            <EventSeries />
+            <ShowURL>http://www.forumcinemas.lv/Websales/Show/190912/</ShowURL>
+            <EventURL>http://www.forumcinemas.lv/Event/301296/</EventURL>
+            <Images>
+                <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_micro/rio2_poster.jpg</EventMicroImagePortrait>
+                <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_small/rio2_poster.jpg</EventSmallImagePortrait>
+                <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_large/rio2_poster.jpg</EventLargeImagePortrait>
+                <EventLargeImageLandscape>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/landscape_large/rio2_670.jpg</EventLargeImageLandscape>
+            </Images>
+            <ContentDescriptors />
+        </Show>
+        <Show>
+            <ID>190939</ID>
+            <dtAccounting>2014-04-27T00:00:00</dtAccounting>
+            <dttmShowStart>2014-04-27T10:30:00</dttmShowStart>
+            <dttmShowStartUTC>2014-04-27T07:30:00Z</dttmShowStartUTC>
+            <dttmShowEnd>2014-04-27T12:15:00</dttmShowEnd>
+            <dttmShowEndUTC>0001-01-01T00:00:00</dttmShowEndUTC>
+            <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+            <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+            <ShowSalesEndTime>2014-04-27T10:15:00</ShowSalesEndTime>
+            <ShowSalesEndTimeUTC>2014-04-27T07:15:00Z</ShowSalesEndTimeUTC>
+            <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+            <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+            <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+            <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+            <EventID>301301</EventID>
+            <Title>Avantūristi</Title>
+            <OriginalTitle>Авантюристы</OriginalTitle>
+            <ProductionYear>2014</ProductionYear>
+            <LengthInMinutes>90</LengthInMinutes>
+            <dtLocalRelease>2014-04-18T00:00:00</dtLocalRelease>
+            <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+            <RatingLabel>12+</RatingLabel>
+            <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_12+.png</RatingImageUrl>
+            <EventType>Movie</EventType>
+            <Genres>Trilleris, Piedzīvojumu filma, Asa sižeta filma</Genres>
+            <TheatreID>1032</TheatreID>
+            <TheatreAuditriumID>1199</TheatreAuditriumID>
+            <Theatre>Kino Citadele</Theatre>
+            <TheatreAuditorium>Auditorija 10</TheatreAuditorium>
+            <TheatreAndAuditorium>Kino Citadele, Auditorija 10</TheatreAndAuditorium>
+            <PresentationMethodAndLanguage>Krievu valodā</PresentationMethodAndLanguage>
+            <PresentationMethod />
+            <EventSeries />
+            <ShowURL>http://www.forumcinemas.lv/Websales/Show/190939/</ShowURL>
+            <EventURL>http://www.forumcinemas.lv/Event/301301/</EventURL>
+            <Images>
+                <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7607/portrait_micro/avanturisty_poster.jpg</EventMicroImagePortrait>
+                <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7607/portrait_small/avanturisty_poster.jpg</EventSmallImagePortrait>
+                <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7607/portrait_large/avanturisty_poster.jpg</EventLargeImagePortrait>
+                <EventSmallImageLandscape>http://forumcinemaslv.blob.core.windows.net/1012/Event_7607/landscape_small/Avanturisty_670.jpg</EventSmallImageLandscape>
+                <EventLargeImageLandscape>http://forumcinemaslv.blob.core.windows.net/1012/Event_7607/landscape_large/Avanturisty_670.jpg</EventLargeImageLandscape>
+            </Images>
+            <ContentDescriptors />
+        </Show>
+        <Show>
+            <ID>190977</ID>
+            <dtAccounting>2014-04-27T00:00:00</dtAccounting>
+            <dttmShowStart>2014-04-27T10:30:00</dttmShowStart>
+            <dttmShowStartUTC>2014-04-27T07:30:00Z</dttmShowStartUTC>
+            <dttmShowEnd>2014-04-27T12:26:00</dttmShowEnd>
+            <dttmShowEndUTC>0001-01-01T00:00:00</dttmShowEndUTC>
+            <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+            <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+            <ShowSalesEndTime>2014-04-27T10:15:00</ShowSalesEndTime>
+            <ShowSalesEndTimeUTC>2014-04-27T07:15:00Z</ShowSalesEndTimeUTC>
+            <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+            <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+            <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+            <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+            <EventID>301296</EventID>
+            <Title>Rio 2</Title>
+            <OriginalTitle>Rio 2</OriginalTitle>
+            <ProductionYear>2014</ProductionYear>
+            <LengthInMinutes>101</LengthInMinutes>
+            <dtLocalRelease>2014-04-18T00:00:00</dtLocalRelease>
+            <Rating>Bez ierobežojuma</Rating>
+            <RatingLabel>U</RatingLabel>
+            <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png</RatingImageUrl>
+            <EventType>Movie</EventType>
+            <Genres>Piedzīvojumu filma, Komēdija, Animācija</Genres>
+            <TheatreID>1032</TheatreID>
+            <TheatreAuditriumID>1195</TheatreAuditriumID>
+            <Theatre>Kino Citadele</Theatre>
+            <TheatreAuditorium>Auditorija 4</TheatreAuditorium>
+            <TheatreAndAuditorium>Kino Citadele, Auditorija 4</TheatreAndAuditorium>
+            <PresentationMethodAndLanguage>3D, Krievu valodā</PresentationMethodAndLanguage>
+            <PresentationMethod>3D</PresentationMethod>
+            <EventSeries />
+            <ShowURL>http://www.forumcinemas.lv/Websales/Show/190977/</ShowURL>
+            <EventURL>http://www.forumcinemas.lv/Event/301296/</EventURL>
+            <Images>
+                <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_micro/rio2_poster.jpg</EventMicroImagePortrait>
+                <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_small/rio2_poster.jpg</EventSmallImagePortrait>
+                <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_large/rio2_poster.jpg</EventLargeImagePortrait>
+                <EventLargeImageLandscape>http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/landscape_large/rio2_670.jpg</EventLargeImageLandscape>
+            </Images>
+            <ContentDescriptors />
+        </Show>
+        <Show>
+            <ID>191050</ID>
+            <dtAccounting>2014-04-27T00:00:00</dtAccounting>
+            <dttmShowStart>2014-04-27T10:45:00</dttmShowStart>
+            <dttmShowStartUTC>2014-04-27T07:45:00Z</dttmShowStartUTC>
+            <dttmShowEnd>2014-04-27T12:32:00</dttmShowEnd>
+            <dttmShowEndUTC>0001-01-01T00:00:00</dttmShowEndUTC>
+            <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+            <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+            <ShowSalesEndTime>2014-04-27T10:30:00</ShowSalesEndTime>
+            <ShowSalesEndTimeUTC>2014-04-27T07:30:00Z</ShowSalesEndTimeUTC>
+            <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+            <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+            <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+            <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+            <EventID>301275</EventID>
+            <Title>Pībodija kungs un Šērmens</Title>
+            <OriginalTitle>Mr. Peabody &amp; Sherman</OriginalTitle>
+            <ProductionYear>2014</ProductionYear>
+            <LengthInMinutes>92</LengthInMinutes>
+            <dtLocalRelease>2014-03-14T00:00:00</dtLocalRelease>
+            <Rating>Bez ierobežojuma</Rating>
+            <RatingLabel>U</RatingLabel>
+            <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png</RatingImageUrl>
+            <EventType>Movie</EventType>
+            <Genres>Piedzīvojumu filma, Komēdija, Animācija</Genres>
+            <TheatreID>1032</TheatreID>
+            <TheatreAuditriumID>1190</TheatreAuditriumID>
+            <Theatre>Kino Citadele</Theatre>
+            <TheatreAuditorium>Auditorija 9</TheatreAuditorium>
+            <TheatreAndAuditorium>Kino Citadele, Auditorija 9</TheatreAndAuditorium>
+            <PresentationMethodAndLanguage>Krievu valodā</PresentationMethodAndLanguage>
+            <PresentationMethod />
+            <EventSeries />
+            <ShowURL>http://www.forumcinemas.lv/Websales/Show/191050/</ShowURL>
+            <EventURL>http://www.forumcinemas.lv/Event/301275/</EventURL>
+            <Images>
+                <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7581/portrait_micro/peabody_poster.jpg</EventMicroImagePortrait>
+                <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7581/portrait_small/peabody_poster.jpg</EventSmallImagePortrait>
+                <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_7581/portrait_large/peabody_poster.jpg</EventLargeImagePortrait>
+                <EventLargeImageLandscape>http://forumcinemaslv.blob.core.windows.net/1012/Event_7581/landscape_large/peabody_670.jpg</EventLargeImageLandscape>
+            </Images>
+            <ContentDescriptors />
+        </Show>
+    </Shows>
+</Schedule>

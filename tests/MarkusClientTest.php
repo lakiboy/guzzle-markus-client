@@ -210,6 +210,36 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         ], $result['items'][0]['images']);
     }
 
+    public function testShowsWithDefaultArguments()
+    {
+        $this->getClient('shows')->shows();
+
+        $this->assertEquals(['nrOfDays' => 1], $this->history->getLastRequest()->getQuery()->toArray());
+    }
+
+    public function testShowsWithArguments()
+    {
+        $this->getClient('shows')->shows(['date' => '2014-04-05', 'days_from_date' => 12, 'area' => 1000, 'event' => 5]);
+
+        $this->assertEquals([
+            'dt' => '05.04.2014',
+            'nrOfDays' => 12,
+            'area' => 1000,
+            'eventID' => 5
+        ], $this->history->getLastRequest()->getQuery()->toArray());
+    }
+
+    public function testShows()
+    {
+        $result = $this->getClient('shows')->shows();
+
+        $this->assertArrayHasKey('published', $result);
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(4, $result['items']);
+
+        $this->assertEquals('2014-04-27', $result['published']);
+    }
+
     /**
      * Set mock response from file.
      *

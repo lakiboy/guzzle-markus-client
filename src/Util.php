@@ -2,12 +2,8 @@
 
 namespace Devmachine\Guzzle\Markus;
 
-use GuzzleHttp\Command\Guzzle\SchemaFormatter;
-
 final class Util
 {
-    private static $formatter;
-
     /**
      * @param array  $array
      * @param string $key
@@ -23,12 +19,15 @@ final class Util
      * Overcome missing timezone issue for dates.
      *
      * @param string $string
+     * @param string $format
      *
      * @return string
      */
-    final public static function formatDate($string)
+    final public static function formatDate($string, $format = 'Y-m-d')
     {
-        return self::getFormatter()->format('date', new \DateTime($string, new \DateTimeZone('UTC')));
+        $date = new \DateTime($string, new \DateTimeZone('UTC'));
+
+        return $date->format($format);
     }
 
     /**
@@ -75,7 +74,7 @@ final class Util
     }
 
     /**
-     * Make image format names for readable.
+     * Make image format names more readable.
      *
      * @param array $item
      *
@@ -92,17 +91,5 @@ final class Util
         }
 
         return $item;
-    }
-
-    /**
-     * @return SchemaFormatter
-     */
-    private static function getFormatter()
-    {
-        if (self::$formatter === null) {
-            self::$formatter = new SchemaFormatter();
-        }
-
-        return self::$formatter;
     }
 }
