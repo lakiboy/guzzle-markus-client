@@ -32,6 +32,69 @@ final class Util
     }
 
     /**
+     * @param array        $item
+     * @param string|array $prefixes
+     *
+     * @return array
+     */
+    final public static function groupParameters(array $item, $prefixes)
+    {
+        foreach ((array) $prefixes as $prefix) {
+            $keys = array_filter(array_keys($item), function ($key) use ($prefix) {
+                return strpos($key, $prefix) === 0;
+            });
+
+            foreach ($keys as $key) {
+                $item[$prefix][substr($key, strlen($prefix) + 1)] = $item[$key];
+                unset($item[$key]);
+            }
+        }
+
+        return $item;
+    }
+
+    /**
+     * Combine retrieved pictures information with images.
+     *
+     * @param array $item
+     *
+     * @return array
+     */
+    final public static function mergePicturesWithImages(array $item)
+    {
+        if (!empty($item['pictures'])) {
+            foreach ($item['pictures'] as $picture) {
+                if (!empty($picture['url']) && !empty($picture['type'])) {
+                    $item['images'][$picture['type']] = $picture['url'];
+                }
+            }
+            unset($item['pictures']);
+        }
+
+        return $item;
+    }
+
+    /**
+     * Make image format names for readable.
+     *
+     * @param array $item
+     *
+     * @return array
+     */
+    final public static function renameImageFormats(array $item)
+    {
+        if (!empty($item['images'])) {
+            $images = [];
+            foreach ($item['images'] as $key => $url) {
+                $images[strtr(strtolower($key), ['event' => '', 'image' => '_'])] = $url;
+            }
+            $item['images'] = $images;
+        }
+
+        return $item;
+    }
+
+    /**
      * @return SchemaFormatter
      */
     private static function getFormatter()

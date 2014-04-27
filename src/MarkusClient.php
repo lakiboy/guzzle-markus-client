@@ -12,6 +12,7 @@ use GuzzleHttp\Command\Model;
  * @method Model schedule()
  * @method Model articleCategories()
  * @method Model articles()
+ * @method Model events()
  */
 class MarkusClient extends GuzzleClient
 {

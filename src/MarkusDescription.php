@@ -70,6 +70,55 @@ class MarkusDescription extends Description
                             'sentAs' => 'categoryID'
                         ]
                     ]
+                ],
+                'events' => [
+                    'httpMethod' => 'GET',
+                    'uri' => 'Events',
+                    'responseModel' => 'EventsOutput',
+                    'documentationUrl' => self::$documentationUrl,
+                    'parameters' => [
+                        'area' => [
+                            '$ref' => 'AreaParameter',
+                        ],
+                        'id' => [
+                            '$ref' => 'EventParameter'
+                        ],
+                        'include_videos' => [
+                            'sentAs' => 'includeVideos',
+                            'type' => 'boolean',
+                            'location' => 'query',
+                            'default' => false,
+                            'format' => 'boolean-string',
+                        ],
+                        'include_links' => [
+                            'sentAs' => 'includeLinks',
+                            'type' => 'boolean',
+                            'location' => 'query',
+                            'default' => false,
+                            'format' => 'boolean-string'
+                        ],
+                        'include_gallery' => [
+                            'sentAs' => 'includeGallery',
+                            'type' => 'boolean',
+                            'location' => 'query',
+                            'default' => false,
+                            'format' => 'boolean-string'
+                        ],
+                        'all_images' => [
+                            'sentAs' => 'includePictures',
+                            'type' => 'boolean',
+                            'location' => 'query',
+                            'default' => false,
+                            'format' => 'boolean-string'
+                        ],
+                        'coming_soon' => [
+                            'sentAs' => 'listType',
+                            'type' => 'boolean',
+                            'location' => 'query',
+                            'default' => false,
+                            'filters' => [function ($val) { return $val ? 'ComingSoon' : 'NowInTheatres'; }]
+                        ],
+                    ]
                 ]
             ],
             'models' => [
@@ -231,6 +280,232 @@ class MarkusDescription extends Description
                                 'properties' => [
                                     'items' => [
                                         '$ref' => 'ArticleCategoriesOutput',
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'EventsOutput' => [
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'Event',
+                    'items' => [
+                        'type' => 'object',
+                        'additionalProperties' => false,
+                        'filters' => [
+                            ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['rating', 'distributor']]],
+                            ['method' => 'Devmachine\Guzzle\Markus\Util::mergePicturesWithImages', 'args' => ['@value']],
+                            ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']],
+                        ],
+                        'properties' => [
+                            'id' => [
+                                'type' => 'integer',
+                                'sentAs' => 'ID',
+                            ],
+                            'title' => [
+                                'type' => 'string',
+                                'sentAs' => 'Title',
+                            ],
+                            'original_title' => [
+                                'type' => 'string',
+                                'sentAs' => 'OriginalTitle',
+                            ],
+                            'year' => [
+                                'type' => 'integer',
+                                'sentAs' => 'ProductionYear'
+                            ],
+                            'length' => [
+                                'type' => 'integer',
+                                'sentAs' => 'LengthInMinutes'
+                            ],
+                            'release_date' => [
+                                'sentAs' => 'dtLocalRelease',
+                                '$ref' => 'DateProperty'
+                            ],
+                            'rating_name' => [
+                                'type' => 'string',
+                                'sentAs' => 'RatingLabel',
+                            ],
+                            'rating_description' => [
+                                'type' => 'string',
+                                'sentAs' => 'Rating',
+                            ],
+                            'rating_image_url' => [
+                                'type' => 'string',
+                                'sentAs' => 'RatingImageUrl',
+                            ],
+                            'distributor_local_name' => [
+                                'type' => 'string',
+                                'sentAs' => 'LocalDistributorName',
+                            ],
+                            'distributor_global_name' => [
+                                'type' => 'string',
+                                'sentAs' => 'GlobalDistributorName',
+                            ],
+                            'production' => [
+                                'type' => 'string',
+                                'sentAs' => 'ProductionCompanies',
+                            ],
+                            'type' => [
+                                'type' => 'string',
+                                'sentAs' => 'EventType',
+                            ],
+                            'genres' => [
+                                'type' => 'string',
+                                'sentAs' => 'Genres',
+                                'filters' => [
+                                    ['method' => 'explode', 'args' => [', ', '@value']],
+                                ]
+                            ],
+                            'url' => [
+                                'type' => 'string',
+                                'sentAs' => 'EventURL',
+                            ],
+                            'abstract' => [
+                                'type' => 'string',
+                                'sentAs' => 'ShortSynopsis',
+                                'filters' => [
+                                    ['method' => 'trim', 'args' => ['@value']],
+                                ]
+                            ],
+                            'synopsis' => [
+                                'type' => 'string',
+                                'sentAs' => 'Synopsis',
+                                'filters' => [
+                                    ['method' => 'trim', 'args' => ['@value']],
+                                ]
+                            ],
+                            'images' => [
+                                'type' => 'object',
+                                'sentAs' => 'Images',
+                            ],
+                            'pictures' => [
+                                'type' => 'object',
+                                'sentAs' => 'Pictures',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'Picture',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'title' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Title'
+                                                ],
+                                                'url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Location'
+                                                ],
+                                                'type' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'PictureType'
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            'videos' => [
+                                'type' => 'object',
+                                'sentAs' => 'Videos',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'EventVideo',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'title' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Title'
+                                                ],
+                                                'url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Location'
+                                                ],
+                                                'thumbnail_url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'ThumbnailLocation'
+                                                ],
+                                                'type' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'MediaResourceSubType'
+                                                ],
+                                                'format' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'MediaResourceFormat'
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            'links' => [
+                                'type' => 'object',
+                                'sentAs' => 'Links',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'Link',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'title' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Title'
+                                                ],
+                                                'url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Location'
+                                                ],
+                                                'type' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'LinkType'
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            'gallery' => [
+                                'type' => 'object',
+                                'sentAs' => 'Gallery',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'GalleryImage',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'title' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Title'
+                                                ],
+                                                'url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'Location'
+                                                ],
+                                                'thumbnail_url' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'ThumbnailLocation'
+                                                ],
+                                            ]
+                                        ]
                                     ]
                                 ]
                             ]

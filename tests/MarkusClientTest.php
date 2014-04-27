@@ -19,11 +19,16 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
     /** @var MockAdapter */
     private $mock;
 
+    /** @var History */
+    private $history;
+
     public function setUp()
     {
         $description = new MarkusDescription('http://forumcinemas.lv/xml');
         $this->mock = new MockAdapter();
+        $this->history = new History();
         $this->client = new MarkusClient(new Client(['adapter' => $this->mock]), $description);
+        $this->client->getHttpClient()->getEmitter()->attach($this->history);
     }
 
     public function testAreas()
@@ -119,8 +124,6 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
 
     public function testArticlesWithArguments()
     {
-        $this->client->getHttpClient()->getEmitter()->attach($history = new History());
-
         $this->getClient('articles')->articles([
             'area' => 1,
             'event' => 2,
@@ -129,7 +132,82 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         ]);
 
         // Test query parameters where actually sent.
-        $this->assertEquals(['area', 'eventID', 'categoryID'], $history->getLastRequest()->getQuery()->getKeys());
+        $this->assertEquals(['area', 'eventID', 'categoryID'], $this->history->getLastRequest()->getQuery()->getKeys());
+    }
+
+    public function testEventsWithDefaultArguments()
+    {
+        $this->getClient('events')->events();
+
+        $this->assertEquals([
+            'includeVideos' => 'false',
+            'includeLinks' => 'false',
+            'includeGallery' => 'false',
+            'includePictures' => 'false',
+            'listType' => 'NowInTheatres'
+        ], $this->history->getLastRequest()->getQuery()->toArray());
+    }
+
+    public function testUpcomingEvents()
+    {
+        $this->getClient('events')->events(['coming_soon' => true]);
+
+        $this->assertTrue($this->history->getLastRequest()->getQuery()->hasKey('listType'));
+        $this->assertEquals('ComingSoon', $this->history->getLastRequest()->getQuery()->get('listType'));
+    }
+
+    public function testEvents()
+    {
+        $result = $this->getClient('events')->events();
+
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(3, $result['items']);
+
+        $this->assertEquals(301312, $result['items'][0]['id']);
+        $this->assertEquals('3 dienas, lai nogalinātu', $result['items'][0]['title']);
+        $this->assertEquals('3 Days to Kill', $result['items'][0]['original_title']);
+        $this->assertEquals(2014, $result['items'][0]['year']);
+        $this->assertEquals(113, $result['items'][0]['length']);
+        $this->assertEquals('2014-04-18', $result['items'][0]['release_date']);
+        $this->assertEquals('12+', $result['items'][0]['rating']['name']);
+        $this->assertEquals('Līdz 12 g.v. -  neiesakām', $result['items'][0]['rating']['description']);
+        $this->assertEquals('http://forumcinemaslv.blob.core.windows.net/images/rating_large_12+.png', $result['items'][0]['rating']['image_url']);
+        $this->assertEquals('Relativity Media', $result['items'][0]['production']);
+        $this->assertEquals('BestFilm.eu OÜ', $result['items'][0]['distributor']['local_name']);
+        $this->assertEquals('BestFilm.eu OÜ', $result['items'][0]['distributor']['global_name']);
+        $this->assertEquals('Movie', $result['items'][0]['type']);
+        $this->assertEquals(['Drāma', 'Detektīvfilma', 'Asa sižeta filma'], $result['items'][0]['genres']);
+        $this->assertStringStartsWith('Ītanam Ranneram jau sen nav nevienam jāpierāda, ka ir viens no labākajiem CIP', $result['items'][0]['abstract']);
+        $this->assertStringStartsWith('Liks Besons piedāvā kriminālo trilleri', $result['items'][0]['synopsis']);
+        $this->assertEquals('http://www.forumcinemas.lv/Event/301312/', $result['items'][0]['url']);
+
+        $this->assertEquals([
+            ['title' => '', 'url' => 'm3XIuNdF9XY', 'thumbnail_url' => '', 'type' => 'EventTrailer', 'format' => 'YouTubeVideo']
+        ], $result['items'][0]['videos']);
+
+        $this->assertEquals([
+            ['title' => 'IMDB', 'url' => 'http://www.imdb.com/title/tt2172934/', 'type' => 'General'],
+            ['title' => 'Oficiālā mājas lapa', 'url' => 'http://3daystokill.tumblr.com/', 'type' => 'EventOfficialHomepage'],
+            ['title' => 'Facebook', 'url' => 'https://www.facebook.com/3daystokillmovie', 'type' => 'General'],
+        ], $result['items'][0]['links']);
+
+        $this->assertEquals([
+            ['title' => '', 'url' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/gallery/3DaystoKill_010.JPG', 'thumbnail_url' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/gallery/THUMB_3DaystoKill_010.JPG'],
+            ['title' => '', 'url' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/gallery/3DaystoKill_011.JPG', 'thumbnail_url' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/gallery/THUMB_3DaystoKill_011.JPG'],
+        ], $result['items'][0]['gallery']);
+
+        // Images should be merged with pictures.
+        $this->assertEquals([
+            'micro_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_micro/20140418_3daystokill.jpg',
+            'small_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_small/20140418_3daystokill.jpg',
+            'large_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_large/20140418_3daystokill.jpg',
+            'large_landscape' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/landscape_large/3daystk_670.jpg',
+            'fullhd_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_fullhd/20140418_3daystokill.jpg',
+            'hd_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_hd/20140418_3daystokill.jpg',
+            'extralarge_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_xlarge/20140418_3daystokill.jpg',
+            'medium_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_medium/20140418_3daystokill.jpg',
+            'poster' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/poster/20140418_3daystokill.jpg',
+        ], $result['items'][0]['images']);
     }
 
     /**
