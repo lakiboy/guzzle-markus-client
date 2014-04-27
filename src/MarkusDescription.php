@@ -50,6 +50,26 @@ class MarkusDescription extends Description
                             '$ref' => 'AreaParameter',
                         ]
                     ]
+                ],
+                'articles' => [
+                    'httpMethod' => 'GET',
+                    'uri' => 'News',
+                    'responseModel' => 'ArticlesOutput',
+                    'documentationUrl' => self::$documentationUrl,
+                    'parameters' => [
+                        'area' => [
+                            '$ref' => 'AreaParameter',
+                        ],
+                        'event' => [
+                            '$ref' => 'EventParameter',
+                            'description' => 'When specified "category" parameter has no effect.'
+                        ],
+                        'category' => [
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'categoryID'
+                        ]
+                    ]
                 ]
             ],
             'models' => [
@@ -57,104 +77,154 @@ class MarkusDescription extends Description
                     'type' => 'integer',
                     'location' => 'query'
                 ],
+                'EventParameter' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'eventID'
+                ],
 
                 'AreasOutput' => [
-                    'type' => 'object',
-                    'properties' => [
-                        'items' => [
-                            'type' => 'array',
-                            'location' => 'xml',
-                            'sentAs' => 'TheatreArea',
-                            'items' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'id' => [
-                                        'type' => 'integer',
-                                        'sentAs' => 'ID'
-                                    ],
-                                    'name' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'Name'
-                                    ]
-                                ]
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'TheatreArea',
+                    'items' => [
+                        'type' => 'object',
+                        'properties' => [
+                            'id' => [
+                                'type' => 'integer',
+                                'sentAs' => 'ID',
+                            ],
+                            'name' => [
+                                'type' => 'string',
+                                'sentAs' => 'Name'
                             ]
                         ]
                     ]
                 ],
                 'LanguagesOutput' => [
-                    'type' => 'object',
-                    'properties' => [
-                        'items' => [
-                            'type' => 'array',
-                            'location' => 'xml',
-                            'sentAs' => 'Language',
-                            'items' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'id' => [
-                                        'type' => 'integer',
-                                        'sentAs' => 'ID'
-                                    ],
-                                    'name' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'Name'
-                                    ],
-                                    'local_name' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'LocalName'
-                                    ],
-                                    'original_name' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'NameInLanguage'
-                                    ],
-                                    'code' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'ISOTwoLetterCode'
-                                    ],
-                                    'three_letter_code' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'ISOCode'
-                                    ]
-                                ]
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'Language',
+                    'items' => [
+                        'type' => 'object',
+                        'properties' => [
+                            'id' => [
+                                'type' => 'integer',
+                                'sentAs' => 'ID',
+                            ],
+                            'name' => [
+                                'type' => 'string',
+                                'sentAs' => 'Name'
+                            ],
+                            'local_name' => [
+                                'type' => 'string',
+                                'sentAs' => 'LocalName'
+                            ],
+                            'original_name' => [
+                                'type' => 'string',
+                                'sentAs' => 'NameInLanguage'
+                            ],
+                            'code' => [
+                                'type' => 'string',
+                                'sentAs' => 'ISOTwoLetterCode'
+                            ],
+                            'three_letter_code' => [
+                                'type' => 'string',
+                                'sentAs' => 'ISOCode'
                             ]
                         ]
                     ]
                 ],
                 'ScheduleOutput' => [
-                    'type' => 'object',
-                    'properties' => [
-                        'items' => [
-                            'type' => 'array',
-                            'location' => 'xml',
-                            'sentAs' => 'dateTime',
-                            'items' => [
-                                'type' => 'string'
-                            ]
-                        ]
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'dateTime',
+                    'items' => [
+                        'type' => 'string'
                     ]
                 ],
                 'ArticleCategoriesOutput' => [
-                    'type' => 'object',
-                    'properties' => [
-                        'items' => [
-                            'type' => 'array',
-                            'location' => 'xml',
-                            'sentAs' => 'NewsArticleCategory',
-                            'items' => [
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'NewsArticleCategory',
+                    'items' => [
+                        'type' => 'object',
+                        'properties' => [
+                            'id' => [
+                                'type' => 'integer',
+                                'sentAs' => 'ID',
+                            ],
+                            'name' => [
+                                'type' => 'string',
+                                'sentAs' => 'Name'
+                            ],
+                            'article_count' => [
+                                'type' => 'integer',
+                                'sentAs' => 'NewsArticleCount'
+                            ],
+                        ]
+                    ]
+                ],
+                'ArticlesOutput' => [
+                    'name' => 'items',
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'sentAs' => 'NewsArticle',
+                    'items' => [
+                        'type' => 'object',
+                        'properties' => [
+                            'title' => [
+                                'type' => 'string',
+                                'sentAs' => 'Title'
+                            ],
+                            'published' => [
+                                'type' => 'string',
+                                'sentAs' => 'PublishDate'
+                            ],
+                            'abstract' => [
+                                'type' => 'string',
+                                'sentAs' => 'HTMLLead',
+                                'filters' => [
+                                    ['method' => 'trim', 'args' => ['@value']],
+                                ]
+                            ],
+                            'content' => [
+                                'type' => 'string',
+                                'sentAs' => 'HTMLContent',
+                                'filters' => [
+                                    ['method' => 'trim', 'args' => ['@value']],
+                                ]
+                            ],
+                            'url' => [
+                                'type' => 'string',
+                                'sentAs' => 'ArticleURL'
+                            ],
+                            'image_url' => [
+                                'type' => 'string',
+                                'sentAs' => 'ImageURL'
+                            ],
+                            'thumbnail_url' => [
+                                'type' => 'string',
+                                'sentAs' => 'ThumbnailURL'
+                            ],
+                            'event' => [
+                                'type' => 'integer',
+                                'sentAs' => 'EventID'
+                            ],
+                            'categories' => [
                                 'type' => 'object',
+                                'sentAs' => 'Categories',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
                                 'properties' => [
-                                    'id' => [
-                                        'type' => 'integer',
-                                        'sentAs' => 'ID'
-                                    ],
-                                    'name' => [
-                                        'type' => 'string',
-                                        'sentAs' => 'Name'
-                                    ],
-                                    'article_count' => [
-                                        'type' => 'integer',
-                                        'sentAs' => 'NewsArticleCount'
-                                    ],
+                                    'items' => [
+                                        '$ref' => 'ArticleCategoriesOutput',
+                                    ]
                                 ]
                             ]
                         ]

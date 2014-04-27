@@ -9,6 +9,7 @@ use GuzzleHttp\Adapter\TransactionInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Subscriber\History;
 
 class MarkusClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -67,7 +68,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         });
 
         // Returns result with 2 items.
-        $result = $this->client->schedule(array('area' => 1000));
+        $result = $this->client->schedule(['area' => 1000]);
 
         $this->assertArrayHasKey('items', $result);
         $this->assertCount(2, $result['items']);
@@ -91,6 +92,44 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1005, $result['items'][0]['id']);
         $this->assertEquals('Filmu ziņas', $result['items'][0]['name']);
         $this->assertEquals(10, $result['items'][0]['article_count']);
+    }
+
+    public function testArticles()
+    {
+        $result = $this->getClient('articles')->articles();
+
+        $this->assertArrayHasKey('items', $result);
+        $this->assertCount(3, $result['items']);
+
+        $this->assertEquals('2014-03-26T00:00:00', $result['items'][2]['published']);
+        $this->assertEquals('UUS EESTI MÄNGUFILM "RISTTUULES" SINU KINOS', $result['items'][2]['title']);
+        $this->assertEquals('Alates tänasest ootame kõiki vaatama uut eesti mängufilmi RISTTUULES. Martti Helde lavastatud mängufilm räägib eestlasi tabanud kuritööst linastub alates 26.03 Tallinnas ja Tartus ning alates 27.03 Narvas.', $result['items'][2]['abstract']);
+        $this->assertStringStartsWith('<p style="text-align: justify;">See on film, mis taastab visuaalselt igaveseks', $result['items'][2]['content']);
+        $this->assertEquals(299564, $result['items'][2]['event']);
+        $this->assertEquals('http://www.forumcinemas.ee/News/MovieNews/2014-03-26/1889/UUS-EESTI-MANGUFILM-RISTTUULES-SINU-KINOS/', $result['items'][2]['url']);
+        $this->assertEquals('http://media.forumcinemas.ee/1000/news/1889/risttuules_poster_valge.png', $result['items'][2]['image_url']);
+        $this->assertEquals('http://media.forumcinemas.ee/1000/news/1889/THUMB_risttuules_poster_valge.png', $result['items'][2]['thumbnail_url']);
+
+        $this->assertCount(2, $result['items'][2]['categories']);
+        $this->assertEquals(1005, $result['items'][2]['categories'][0]['id']);
+        $this->assertEquals('Filmimaailm', $result['items'][2]['categories'][0]['name']);
+        $this->assertEquals(1002, $result['items'][2]['categories'][1]['id']);
+        $this->assertEquals('Kinoklubi', $result['items'][2]['categories'][1]['name']);
+    }
+
+    public function testArticlesWithArguments()
+    {
+        $this->client->getHttpClient()->getEmitter()->attach($history = new History());
+
+        $this->getClient('articles')->articles([
+            'area' => 1,
+            'event' => 2,
+            'category' => 3,
+            'dummy' => 'any_value'
+        ]);
+
+        // Test query parameters where actually sent.
+        $this->assertEquals(array('area', 'eventID', 'categoryID'), $history->getLastRequest()->getQuery()->getKeys());
     }
 
     /**
