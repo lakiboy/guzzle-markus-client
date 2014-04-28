@@ -19,7 +19,7 @@ There are more MCS installations (e.g. http://www.silverscreen.lv), but not all 
 
 This guzzle client tries to fix various inconsitences of XML API, regroup, rename and filter returned results. Basically to make it look like you deal with fine-tuned JSON API.
 
-#### Installation
+## Installation
 
 This library can be installed using Composer. Add the following to your composer.json:
 
