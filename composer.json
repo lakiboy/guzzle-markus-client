@@ -1,8 +1,8 @@
 {
     "name": "devmachine/guzzle-markus-client",
     "type": "library",
-    "description": "Guzzle client for Markus API - http://forumcinemas.lv/XML.",
-    "keywords": [ "markus", "api", "guzzle" ],
+    "description": "Guzzle client for Markus API e.g. http://forumcinemas.lv/XML.",
+    "keywords": [ "markus", "api", "guzzle", "forumcinemas" ],
     "homepage": "http://devmachine.net",
     "license": [ "MIT" ],
     "authors": [
