@@ -84,3 +84,55 @@ array(4) {
   }
 }
 ```
+
+## API methods
+
+There are no required parameters. Below there is an example with all possible arguments for each method.
+
+```php
+use Devmachine\Guzzle\Markus\MarkusClient;
+
+$client = MarkusClient::factory('http://forumcinemas.ee/xml');
+
+// Get list of theatres
+$result = $client->areas();
+
+// Get list of languages.
+$result = $client->languages();
+
+// Get list of show dates.
+$result = $client->schedule([
+    'area' => $areaId // Defaults to first area in the list.
+]);
+
+// Get list of article categories.
+$result = $client->articleCategories([
+    'area' => $areaId // Filter by area.
+])
+
+// Get list of articles.
+$result = $client->articles([
+    'area'     => $areaId,    // Filter by area.
+    'event'    => $eventId,   // When specified "category" parameter has no effect.
+    'category' => $categoryId // Filter by category.
+]);
+
+// Get list of events.
+$result = $client->events([
+    'area'            => $areaId,  // Has no effect when "coming_soon" parameter is set to true.
+    'id'              => $eventId, // When specified "area" and "coming_soon" parameters have no effect.
+    'include_videos'  => true,     // Include video data.
+    'include_links'   => true,     // Include links data.
+    'include_gallery' => true,     // Include gallery data.
+    'all_images'      => true,     // Fetch all available images (except gallery).
+    'coming_soon'     => true      // Show upcoming events. Defaults to false.
+]);
+
+// Get list of shows.
+$result = $client->shows([
+    'area'           => $areaId,      // Defaults to first area in the list.
+    'event'          => $eventId,     // Filter by event.
+    'date'           => '2014-04-28', // Defaults to today.
+    'days_from_date' => 2,            // Amount of days to include from date. Defaults to 1.
+]);
+```
