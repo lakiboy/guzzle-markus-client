@@ -141,27 +141,13 @@ $result = $client->shows([
 
 Accoding to findings MCS API has consistent images naming/dimensions.
 
-Portrait:
-
-Name    | Dimensions
---------| ----------
-micro   | 59x87
-small   | 99x146
-medium  | 320x480
-large   | 480x711
-xlarge  | 640x948
-hd      | 720x1280
-full hd | 1080x1920
-poster  | 768x1097
-
-Landscape:
-
-Name    | Dimensions
---------| ----------
-micro   | 88x31
-small   | 148x100
-medium  | 310x150
-large   | 670x250
-xlarge  | 851x315
-hd      | 1280x720
-full hd | 1920x1080
+Name    | Portrait  | Landscape
+--------| ----------|----------
+micro   | 59x87     | 88x31
+small   | 99x146    | 148x100
+medium  | 320x480   | 310x150
+large   | 480x711   | 670x250
+xlarge  | 640x948   | 851x315
+hd      | 720x1280  | 1280x720
+full hd | 1080x1920 | 1920x1080
+poster  | 768x1097  | -
