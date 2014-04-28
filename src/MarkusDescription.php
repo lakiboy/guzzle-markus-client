@@ -121,6 +121,7 @@ class MarkusDescription extends Description
                             'sentAs' => 'listType',
                             'type' => 'boolean',
                             'location' => 'query',
+                            'description' => 'Show upcoming events.',
                             'default' => false,
                             'filters' => [function ($val) { return $val ? 'ComingSoon' : 'NowInTheatres'; }]
                         ],
@@ -143,6 +144,7 @@ class MarkusDescription extends Description
                             'type' => 'string',
                             'location' => 'query',
                             'sentAs' => 'dt',
+                            'description' => 'Defaults to today.',
                             'filters' => [
                                 ['method' => 'Devmachine\Guzzle\Markus\Util::formatDate', 'args' => ['@value', 'd.m.Y']],
                             ],
@@ -153,7 +155,8 @@ class MarkusDescription extends Description
                             'sentAs' => 'nrOfDays',
                             'default' => 1,
                             'minimum' => 1,
-                            'maximum' => 31
+                            'maximum' => 31,
+                            'description' => 'Amount of days to include from date.'
                         ]
                     ]
                 ]
