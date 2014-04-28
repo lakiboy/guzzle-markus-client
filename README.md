@@ -108,7 +108,7 @@ $result = $client->schedule([
 // Get list of article categories.
 $result = $client->articleCategories([
     'area' => $areaId // Filter by area.
-])
+]);
 
 // Get list of articles.
 $result = $client->articles([
@@ -121,10 +121,10 @@ $result = $client->articles([
 $result = $client->events([
     'area'            => $areaId,  // Has no effect when "coming_soon" parameter is set to true.
     'id'              => $eventId, // When specified "area" and "coming_soon" parameters have no effect.
-    'include_videos'  => true,     // Include video data.
-    'include_links'   => true,     // Include links data.
-    'include_gallery' => true,     // Include gallery data.
-    'all_images'      => true,     // Fetch all available images (except gallery).
+    'include_videos'  => true,     // Include video data. Defaults to false.
+    'include_links'   => true,     // Include links data. Defaults to false.
+    'include_gallery' => true,     // Include gallery data. Defaults to false.
+    'all_images'      => true,     // Fetch all available images (except gallery). Defaults to false.
     'coming_soon'     => true      // Show upcoming events. Defaults to false.
 ]);
 
