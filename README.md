@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dev-machine/guzzle-markus-client.svg?branch=master)](https://travis-ci.org/dev-machine/guzzle-markus-client)
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1/big.png)](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1/mini.png)](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1)
 
 Guzzle client for Markus Cinema System installations - http://www.markus.ee/. Used in Baltics, Finland, Iceland and Malta. In Latvia, Lithuania and Estonia best known as _ForumCinemas_ chain.
 
