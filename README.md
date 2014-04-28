@@ -1,3 +1,1 @@
-# Guzzle Client for Markus Cinema System API
-
-
+# Guzzle Client for MCS API
