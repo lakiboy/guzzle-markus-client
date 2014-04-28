@@ -25,6 +25,6 @@ class MarkusClient extends GuzzleClient
      */
     public static function factory($baseUrl, array $options = [])
     {
-        return new self(new Client(), new MarkusDescription($baseUrl), $options);
+        return new static(new Client(), new MarkusDescription($baseUrl), $options);
     }
 }

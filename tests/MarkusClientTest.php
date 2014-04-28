@@ -238,6 +238,46 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(4, $result['items']);
 
         $this->assertEquals('2014-04-27', $result['published']);
+
+        // Main show data.
+        $this->assertEquals(190912, $result['items'][0]['id']);
+        $this->assertEquals('2014-04-27', $result['items'][0]['date']);
+        $this->assertEquals('2014-04-27T10:15:00', $result['items'][0]['sales_end_time']);
+        $this->assertEquals('2014-04-27T07:15:00Z', $result['items'][0]['sales_end_time_utc']);
+        $this->assertEquals('2014-04-27T10:30:00', $result['items'][0]['start_time']);
+        $this->assertEquals('2014-04-27T07:30:00Z', $result['items'][0]['start_time_utc']);
+        $this->assertEquals('2014-04-27T12:26:00', $result['items'][0]['end_time']);
+        $this->assertEquals('2014-04-27T09:26:00Z', $result['items'][0]['end_time_utc']);
+        $this->assertEquals('http://www.forumcinemas.lv/Websales/Show/190912/', $result['items'][0]['url']);
+
+        // Internal event.
+        $this->assertEquals([
+            'id' => 301296,
+            'title' => 'Rio 2',
+            'original_title' => 'Rio 2',
+            'year' => '2014',
+            'length' => 101,
+            'release_date' => '2014-04-18',
+            'genres' => ['Piedzīvojumu filma', 'Komēdija', 'Animācija'],
+            'type' => 'Movie',
+            'rating' => [
+                'name' => 'U',
+                'description' => 'Bez ierobežojuma',
+                'image_url' => 'http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png'
+            ],
+            'images' => [
+                'micro_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_micro/rio2_poster.jpg',
+                'small_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_small/rio2_poster.jpg',
+                'large_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_large/rio2_poster.jpg',
+                'large_landscape' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/landscape_large/rio2_670.jpg',
+            ],
+            'url' => 'http://www.forumcinemas.lv/Event/301296/',
+        ], $result['items'][0]['event']);
+
+        // Sections.
+        $this->assertEquals(['id' => 1032, 'name' => 'Kino Citadele'], $result['items'][0]['area']);
+        $this->assertEquals(['id' => 1197, 'name' => 'Auditorija 2', 'full_name' => 'Kino Citadele, Auditorija 2'], $result['items'][0]['auditorium']);
+        $this->assertEquals(['method' => '3D', 'description' => '3D, Latviešu valodā'], $result['items'][0]['presentation']);
     }
 
     /**

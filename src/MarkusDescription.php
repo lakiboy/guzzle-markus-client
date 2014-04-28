@@ -333,8 +333,7 @@ class MarkusDescription extends Description
                         'additionalProperties' => false,
                         'filters' => [
                             ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['rating', 'distributor']]],
-                            ['method' => 'Devmachine\Guzzle\Markus\Util::mergePicturesWithImages', 'args' => ['@value']],
-                            ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']],
+                            ['method' => 'Devmachine\Guzzle\Markus\Util::mergePicturesWithImages', 'args' => ['@value']]
                         ],
                         'properties' => [
                             'id' => [
@@ -417,6 +416,9 @@ class MarkusDescription extends Description
                             'images' => [
                                 'type' => 'object',
                                 'sentAs' => 'Images',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']]
+                                ]
                             ],
                             'pictures' => [
                                 'type' => 'object',
@@ -441,7 +443,10 @@ class MarkusDescription extends Description
                                                 ],
                                                 'type' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'PictureType'
+                                                    'sentAs' => 'PictureType',
+                                                    'filters' => [
+                                                        ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormat', 'args' => ['@value']]
+                                                    ]
                                                 ],
                                             ]
                                         ]
@@ -563,7 +568,141 @@ class MarkusDescription extends Description
                             'sentAs' => 'Shows',
                             'items' => [
                                 'type' => 'object',
-                                'sentAs' => 'Show'
+                                'sentAs' => 'Show',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['event_rating']]],
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['event', 'presentation', 'area', 'auditorium']]],
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::fixShowEndTimeUTC', 'args' => ['@value']],
+                                ],
+                                'additionalProperties' => false,
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'ID',
+                                    ],
+                                    'url' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'ShowURL',
+                                    ],
+                                    'series' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'EventSeries',
+                                    ],
+                                    'event_title' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'Title',
+                                    ],
+                                    'event_original_title' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'OriginalTitle',
+                                    ],
+                                    'event_year' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'ProductionYear'
+                                    ],
+                                    'event_length' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'LengthInMinutes'
+                                    ],
+                                    'event_release_date' => [
+                                        'sentAs' => 'dtLocalRelease',
+                                        '$ref' => 'DateProperty'
+                                    ],
+                                    'event_rating_name' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'RatingLabel',
+                                    ],
+                                    'event_rating_description' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'Rating',
+                                    ],
+                                    'event_rating_image_url' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'RatingImageUrl',
+                                    ],
+                                    'event_type' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'EventType',
+                                    ],
+                                    'event_genres' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'Genres',
+                                        'filters' => [
+                                            ['method' => 'explode', 'args' => [', ', '@value']],
+                                        ]
+                                    ],
+                                    'event_id' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'EventID',
+                                    ],
+                                    'event_url' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'EventURL',
+                                    ],
+                                    'event_images' => [
+                                        'type' => 'object',
+                                        'sentAs' => 'Images',
+                                        'filters' => [
+                                            ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']]
+                                        ]
+                                    ],
+                                    'presentation_description' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'PresentationMethodAndLanguage',
+                                    ],
+                                    'presentation_method' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'PresentationMethod',
+                                    ],
+                                    'area_id' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'TheatreID',
+                                    ],
+                                    'area_name' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'Theatre',
+                                    ],
+                                    'auditorium_id' => [
+                                        'type' => 'integer',
+                                        'sentAs' => 'TheatreAuditriumID',
+                                    ],
+                                    'auditorium_name' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'TheatreAuditorium',
+                                    ],
+                                    'auditorium_full_name' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'TheatreAndAuditorium',
+                                    ],
+                                    'date' => [
+                                        '$ref' => 'DateProperty',
+                                        'sentAs' => 'dtAccounting'
+                                    ],
+                                    'sales_end_time' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'ShowSalesEndTime'
+                                    ],
+                                    'sales_end_time_utc' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'ShowSalesEndTimeUTC'
+                                    ],
+                                    'start_time' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'dttmShowStart'
+                                    ],
+                                    'start_time_utc' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'dttmShowStartUTC'
+                                    ],
+                                    'end_time' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'dttmShowEnd'
+                                    ],
+                                    'end_time_utc' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'dttmShowEndUTC'
+                                    ]
+                                ]
                             ]
                         ]
                     ]

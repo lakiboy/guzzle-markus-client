@@ -76,19 +76,49 @@ final class Util
     /**
      * Make image format names more readable.
      *
+     * @param array $items
+     *
+     * @return array
+     */
+    final public static function renameImageFormats(array $items)
+    {
+        $result = [];
+        foreach ($items as $key => $url) {
+            $result[self::renameImageFormat($key)] = $url;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $format
+     *
+     * @return string
+     */
+    final public static function renameImageFormat($format)
+    {
+        return strtr(strtolower($format), ['event' => '', 'image' => '_']);
+    }
+
+    /**
+     * This methods calculates show end time in UTC.
+     *
+     * For some reason API provides show start/end time in local timezone and show start time in UTC.
+     * Show end time in UTC in all API examples is incorrect.
+     *
      * @param array $item
      *
      * @return array
      */
-    final public static function renameImageFormats(array $item)
+    final public static function fixShowEndTimeUTC(array $item)
     {
-        if (!empty($item['images'])) {
-            $images = [];
-            foreach ($item['images'] as $key => $url) {
-                $images[strtr(strtolower($key), ['event' => '', 'image' => '_'])] = $url;
-            }
-            $item['images'] = $images;
-        }
+        $startTime = new \DateTime($item['start_time']);
+        $endTime = new \DateTime($item['end_time']);
+
+        $startTimeUtc = new \DateTime($item['start_time_utc'], new \DateTimeZone('UTC'));
+        $endTimeUtc = $startTimeUtc->add($startTime->diff($endTime));
+
+        $item['end_time_utc'] = $endTimeUtc->format('Y-m-d\TH:i:s\Z');
 
         return $item;
     }
