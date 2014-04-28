@@ -1,19 +1,19 @@
 <?php
 
+/** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
 namespace Devmachine\Guzzle\Markus;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Command\Model;
 
 /**
- * @method Model areas()
- * @method Model languages()
- * @method Model schedule()
- * @method Model articleCategories()
- * @method Model articles()
- * @method Model events()
- * @method Model shows()
+ * @method \GuzzleHttp\Command\Model areas()
+ * @method \GuzzleHttp\Command\Model languages()
+ * @method \GuzzleHttp\Command\Model schedule()
+ * @method \GuzzleHttp\Command\Model articleCategories()
+ * @method \GuzzleHttp\Command\Model articles()
+ * @method \GuzzleHttp\Command\Model events()
+ * @method \GuzzleHttp\Command\Model shows()
  */
 class MarkusClient extends GuzzleClient
 {
