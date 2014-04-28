@@ -4,6 +4,8 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1/mini.png)](https://insight.sensiolabs.com/projects/f969371b-7be2-4f5c-b3b7-7e36f335dcc1)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dev-machine/guzzle-markus-client/badges/quality-score.png?s=4b2753b29c4578f89f58d02555c9f22eba96e739)](https://scrutinizer-ci.com/g/dev-machine/guzzle-markus-client/)
+
 Guzzle client for Markus Cinema System installations - http://www.markus.ee/. Used in Baltics, Finland, Iceland and Malta. In Latvia, Lithuania and Estonia best known as _ForumCinemas_ chain.
 
 #### Cinemas list (not complete):
