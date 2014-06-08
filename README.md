@@ -23,7 +23,7 @@ There are more MCS installations (e.g. http://www.silverscreen.lv), but not all 
 
 #### Description
 
-This guzzle client tries to fix various inconsitences of XML API, regroup, rename and filter returned results. Basically to make it look like you deal with fine-tuned JSON API.
+This guzzle client tries to fix various inconsistencies of XML API, regroup, rename and filter returned results. Basically to make it look like you deal with fine-tuned JSON API.
 
 ## Installation
 
