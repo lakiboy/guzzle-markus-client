@@ -353,11 +353,17 @@ class MarkusDescription extends Description
                             ],
                             'year' => [
                                 'type' => 'integer',
-                                'sentAs' => 'ProductionYear'
+                                'sentAs' => 'ProductionYear',
+                                'filters' => [
+                                    'intval'
+                                ]
                             ],
                             'length' => [
                                 'type' => 'integer',
-                                'sentAs' => 'LengthInMinutes'
+                                'sentAs' => 'LengthInMinutes',
+                                'filters' => [
+                                    'intval'
+                                ]
                             ],
                             'release_date' => [
                                 'sentAs' => 'dtLocalRelease',
