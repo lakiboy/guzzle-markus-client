@@ -560,6 +560,58 @@ class MarkusDescription extends Description
                                     ],
                                 ],
                             ],
+                            'actors' => [
+                                'type' => 'object',
+                                'sentAs' => 'Cast',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'Actor',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'first_name' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'FirstName',
+                                                ],
+                                                'last_name' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'LastName',
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            'directors' => [
+                                'type' => 'object',
+                                'sentAs' => 'Directors',
+                                'filters' => [
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::getArrayElement', 'args' => ['@value', 'items']],
+                                ],
+                                'properties' => [
+                                    'items' => [
+                                        'type' => 'array',
+                                        'sentAs' => 'Director',
+                                        'items' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'first_name' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'FirstName',
+                                                ],
+                                                'last_name' => [
+                                                    'type' => 'string',
+                                                    'sentAs' => 'LastName',
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                 ],

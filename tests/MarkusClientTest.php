@@ -211,6 +211,14 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             'medium_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/portrait_medium/20140418_3daystokill.jpg',
             'poster' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/poster/20140418_3daystokill.jpg',
         ], $result['items'][0]['images']);
+
+        $this->assertCount(6, $result['items'][0]['actors']);
+        $this->assertCount(1, $result['items'][0]['directors']);
+        $this->assertEquals(['first_name' => 'Jake', 'last_name' => 'McDorman'], $result['items'][0]['actors'][2]);
+        $this->assertEquals(['first_name' => 'Clint', 'last_name' => 'Eastwood'], $result['items'][0]['directors'][0]);
+
+        $this->assertArrayNotHasKey('actors', $result['items'][1]);
+        $this->assertArrayNotHasKey('directors', $result['items'][1]);
     }
 
     public function testShowsWithDefaultArguments()

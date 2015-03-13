@@ -117,6 +117,38 @@
                 <ThumbnailLocation>http://forumcinemaslv.blob.core.windows.net/1012/Event_7619/gallery/THUMB_3DaystoKill_011.JPG</ThumbnailLocation>
             </GalleryImage>
         </Gallery>
+        <Cast>
+            <Actor>
+                <FirstName>Bradley</FirstName>
+                <LastName>Cooper</LastName>
+            </Actor>
+            <Actor>
+                <FirstName>Sienna</FirstName>
+                <LastName>Miller</LastName>
+            </Actor>
+            <Actor>
+                <FirstName>Jake</FirstName>
+                <LastName>McDorman</LastName>
+            </Actor>
+            <Actor>
+                <FirstName>Luke</FirstName>
+                <LastName>Grimes</LastName>
+            </Actor>
+            <Actor>
+                <FirstName>Navid</FirstName>
+                <LastName>Negahban</LastName>
+            </Actor>
+            <Actor>
+                <FirstName>Keir</FirstName>
+                <LastName>O’Donnell</LastName>
+            </Actor>
+        </Cast>
+        <Directors>
+            <Director>
+                <FirstName>Clint</FirstName>
+                <LastName>Eastwood</LastName>
+            </Director>
+        </Directors>
         <ContentDescriptors />
     </Event>
     <Event>
