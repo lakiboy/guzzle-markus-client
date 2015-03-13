@@ -11,7 +11,7 @@ class MarkusDescription extends Description
     public function __construct($baseUrl)
     {
         parent::__construct([
-            'baseUrl' => rtrim($baseUrl, '/') . '/',
+            'baseUrl' => rtrim($baseUrl, '/').'/',
             'name' => 'Markus',
             'description' => 'Markus Cinema System API - http://www.markus.ee',
             'apiVersion' => '1.0',
@@ -20,13 +20,13 @@ class MarkusDescription extends Description
                     'httpMethod' => 'GET',
                     'uri' => 'TheatreAreas',
                     'responseModel' => 'AreasOutput',
-                    'documentationUrl' => self::$documentationUrl
+                    'documentationUrl' => self::$documentationUrl,
                 ],
                 'languages' => [
                     'httpMethod' => 'GET',
                     'uri' => 'Languages',
                     'responseModel' => 'LanguagesOutput',
-                    'documentationUrl' => self::$documentationUrl
+                    'documentationUrl' => self::$documentationUrl,
                 ],
                 'schedule' => [
                     'httpMethod' => 'GET',
@@ -36,9 +36,9 @@ class MarkusDescription extends Description
                     'parameters' => [
                         'area' => [
                             '$ref' => 'AreaParameter',
-                            'description' => 'Defaults to first area in the list.'
-                        ]
-                    ]
+                            'description' => 'Defaults to first area in the list.',
+                        ],
+                    ],
                 ],
                 'articleCategories' => [
                     'httpMethod' => 'GET',
@@ -48,8 +48,8 @@ class MarkusDescription extends Description
                     'parameters' => [
                         'area' => [
                             '$ref' => 'AreaParameter',
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'articles' => [
                     'httpMethod' => 'GET',
@@ -62,14 +62,14 @@ class MarkusDescription extends Description
                         ],
                         'event' => [
                             '$ref' => 'EventParameter',
-                            'description' => 'When specified "category" parameter has no effect.'
+                            'description' => 'When specified "category" parameter has no effect.',
                         ],
                         'category' => [
                             'type' => 'integer',
                             'location' => 'query',
-                            'sentAs' => 'categoryID'
-                        ]
-                    ]
+                            'sentAs' => 'categoryID',
+                        ],
+                    ],
                 ],
                 'events' => [
                     'httpMethod' => 'GET',
@@ -79,11 +79,11 @@ class MarkusDescription extends Description
                     'parameters' => [
                         'area' => [
                             '$ref' => 'AreaParameter',
-                            'description' => 'Has no effect when "coming_soon" parameter is set to true.'
+                            'description' => 'Has no effect when "coming_soon" parameter is set to true.',
                         ],
                         'id' => [
                             '$ref' => 'EventParameter',
-                            'description' => 'When specified "area" and "coming_soon" parameters have no effect.'
+                            'description' => 'When specified "area" and "coming_soon" parameters have no effect.',
                         ],
                         'include_videos' => [
                             'sentAs' => 'includeVideos',
@@ -91,7 +91,7 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'default' => false,
                             'format' => 'boolean-string',
-                            'description' => 'Include video data.'
+                            'description' => 'Include video data.',
                         ],
                         'include_links' => [
                             'sentAs' => 'includeLinks',
@@ -99,7 +99,7 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'default' => false,
                             'format' => 'boolean-string',
-                            'description' => 'Include links data.'
+                            'description' => 'Include links data.',
                         ],
                         'include_gallery' => [
                             'sentAs' => 'includeGallery',
@@ -107,7 +107,7 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'default' => false,
                             'format' => 'boolean-string',
-                            'description' => 'Include gallery data.'
+                            'description' => 'Include gallery data.',
                         ],
                         'all_images' => [
                             'sentAs' => 'includePictures',
@@ -115,7 +115,7 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'default' => false,
                             'format' => 'boolean-string',
-                            'description' => 'Fetch all available images (except gallery).'
+                            'description' => 'Fetch all available images (except gallery).',
                         ],
                         'coming_soon' => [
                             'sentAs' => 'listType',
@@ -123,9 +123,9 @@ class MarkusDescription extends Description
                             'location' => 'query',
                             'description' => 'Show upcoming events.',
                             'default' => false,
-                            'filters' => [function ($val) { return $val ? 'ComingSoon' : 'NowInTheatres'; }]
+                            'filters' => [function ($val) { return $val ? 'ComingSoon' : 'NowInTheatres'; }],
                         ],
-                    ]
+                    ],
                 ],
                 'shows' => [
                     'httpMethod' => 'GET',
@@ -135,7 +135,7 @@ class MarkusDescription extends Description
                     'parameters' => [
                         'area' => [
                             '$ref' => 'AreaParameter',
-                            'description' => 'Defaults to first area in the list.'
+                            'description' => 'Defaults to first area in the list.',
                         ],
                         'event' => [
                             '$ref' => 'EventParameter',
@@ -156,20 +156,20 @@ class MarkusDescription extends Description
                             'default' => 1,
                             'minimum' => 1,
                             'maximum' => 31,
-                            'description' => 'Amount of days to include from date.'
-                        ]
-                    ]
-                ]
+                            'description' => 'Amount of days to include from date.',
+                        ],
+                    ],
+                ],
             ],
             'models' => [
                 'AreaParameter' => [
                     'type' => 'integer',
-                    'location' => 'query'
+                    'location' => 'query',
                 ],
                 'EventParameter' => [
                     'type' => 'integer',
                     'location' => 'query',
-                    'sentAs' => 'eventID'
+                    'sentAs' => 'eventID',
                 ],
 
                 'DateProperty' => [
@@ -193,10 +193,10 @@ class MarkusDescription extends Description
                             ],
                             'name' => [
                                 'type' => 'string',
-                                'sentAs' => 'Name'
-                            ]
-                        ]
-                    ]
+                                'sentAs' => 'Name',
+                            ],
+                        ],
+                    ],
                 ],
                 'LanguagesOutput' => [
                     'name' => 'items',
@@ -212,26 +212,26 @@ class MarkusDescription extends Description
                             ],
                             'name' => [
                                 'type' => 'string',
-                                'sentAs' => 'Name'
+                                'sentAs' => 'Name',
                             ],
                             'local_name' => [
                                 'type' => 'string',
-                                'sentAs' => 'LocalName'
+                                'sentAs' => 'LocalName',
                             ],
                             'original_name' => [
                                 'type' => 'string',
-                                'sentAs' => 'NameInLanguage'
+                                'sentAs' => 'NameInLanguage',
                             ],
                             'code' => [
                                 'type' => 'string',
-                                'sentAs' => 'ISOTwoLetterCode'
+                                'sentAs' => 'ISOTwoLetterCode',
                             ],
                             'three_letter_code' => [
                                 'type' => 'string',
-                                'sentAs' => 'ISOCode'
-                            ]
-                        ]
-                    ]
+                                'sentAs' => 'ISOCode',
+                            ],
+                        ],
+                    ],
                 ],
                 'ScheduleOutput' => [
                     'name' => 'items',
@@ -239,8 +239,8 @@ class MarkusDescription extends Description
                     'location' => 'xml',
                     'sentAs' => 'dateTime',
                     'items' => [
-                        '$ref' => 'DateProperty'
-                    ]
+                        '$ref' => 'DateProperty',
+                    ],
                 ],
                 'ArticleCategoriesOutput' => [
                     'name' => 'items',
@@ -256,14 +256,14 @@ class MarkusDescription extends Description
                             ],
                             'name' => [
                                 'type' => 'string',
-                                'sentAs' => 'Name'
+                                'sentAs' => 'Name',
                             ],
                             'article_count' => [
                                 'type' => 'integer',
-                                'sentAs' => 'NewsArticleCount'
+                                'sentAs' => 'NewsArticleCount',
                             ],
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'ArticlesOutput' => [
                     'name' => 'items',
@@ -275,41 +275,41 @@ class MarkusDescription extends Description
                         'properties' => [
                             'title' => [
                                 'type' => 'string',
-                                'sentAs' => 'Title'
+                                'sentAs' => 'Title',
                             ],
                             'published' => [
                                 '$ref' => 'DateProperty',
-                                'sentAs' => 'PublishDate'
+                                'sentAs' => 'PublishDate',
                             ],
                             'abstract' => [
                                 'type' => 'string',
                                 'sentAs' => 'HTMLLead',
                                 'filters' => [
                                     ['method' => 'trim', 'args' => ['@value']],
-                                ]
+                                ],
                             ],
                             'content' => [
                                 'type' => 'string',
                                 'sentAs' => 'HTMLContent',
                                 'filters' => [
                                     ['method' => 'trim', 'args' => ['@value']],
-                                ]
+                                ],
                             ],
                             'url' => [
                                 'type' => 'string',
-                                'sentAs' => 'ArticleURL'
+                                'sentAs' => 'ArticleURL',
                             ],
                             'image_url' => [
                                 'type' => 'string',
-                                'sentAs' => 'ImageURL'
+                                'sentAs' => 'ImageURL',
                             ],
                             'thumbnail_url' => [
                                 'type' => 'string',
-                                'sentAs' => 'ThumbnailURL'
+                                'sentAs' => 'ThumbnailURL',
                             ],
                             'event' => [
                                 'type' => 'integer',
-                                'sentAs' => 'EventID'
+                                'sentAs' => 'EventID',
                             ],
                             'categories' => [
                                 'type' => 'object',
@@ -320,11 +320,11 @@ class MarkusDescription extends Description
                                 'properties' => [
                                     'items' => [
                                         '$ref' => 'ArticleCategoriesOutput',
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'EventsOutput' => [
                     'name' => 'items',
@@ -336,7 +336,7 @@ class MarkusDescription extends Description
                         'additionalProperties' => false,
                         'filters' => [
                             ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['rating', 'distributor']]],
-                            ['method' => 'Devmachine\Guzzle\Markus\Util::mergePicturesWithImages', 'args' => ['@value']]
+                            ['method' => 'Devmachine\Guzzle\Markus\Util::mergePicturesWithImages', 'args' => ['@value']],
                         ],
                         'properties' => [
                             'id' => [
@@ -355,19 +355,19 @@ class MarkusDescription extends Description
                                 'type' => 'integer',
                                 'sentAs' => 'ProductionYear',
                                 'filters' => [
-                                    'intval'
-                                ]
+                                    'intval',
+                                ],
                             ],
                             'length' => [
                                 'type' => 'integer',
                                 'sentAs' => 'LengthInMinutes',
                                 'filters' => [
-                                    'intval'
-                                ]
+                                    'intval',
+                                ],
                             ],
                             'release_date' => [
                                 'sentAs' => 'dtLocalRelease',
-                                '$ref' => 'DateProperty'
+                                '$ref' => 'DateProperty',
                             ],
                             'rating_name' => [
                                 'type' => 'string',
@@ -402,7 +402,7 @@ class MarkusDescription extends Description
                                 'sentAs' => 'Genres',
                                 'filters' => [
                                     ['method' => 'explode', 'args' => [', ', '@value']],
-                                ]
+                                ],
                             ],
                             'url' => [
                                 'type' => 'string',
@@ -413,21 +413,21 @@ class MarkusDescription extends Description
                                 'sentAs' => 'ShortSynopsis',
                                 'filters' => [
                                     ['method' => 'trim', 'args' => ['@value']],
-                                ]
+                                ],
                             ],
                             'synopsis' => [
                                 'type' => 'string',
                                 'sentAs' => 'Synopsis',
                                 'filters' => [
                                     ['method' => 'trim', 'args' => ['@value']],
-                                ]
+                                ],
                             ],
                             'images' => [
                                 'type' => 'object',
                                 'sentAs' => 'Images',
                                 'filters' => [
-                                    ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']]
-                                ]
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']],
+                                ],
                             ],
                             'pictures' => [
                                 'type' => 'object',
@@ -444,23 +444,23 @@ class MarkusDescription extends Description
                                             'properties' => [
                                                 'title' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Title'
+                                                    'sentAs' => 'Title',
                                                 ],
                                                 'url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Location'
+                                                    'sentAs' => 'Location',
                                                 ],
                                                 'type' => [
                                                     'type' => 'string',
                                                     'sentAs' => 'PictureType',
                                                     'filters' => [
-                                                        ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormat', 'args' => ['@value']]
-                                                    ]
+                                                        ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormat', 'args' => ['@value']],
+                                                    ],
                                                 ],
-                                            ]
-                                        ]
-                                    ]
-                                ]
+                                            ],
+                                        ],
+                                    ],
+                                ],
                             ],
                             'videos' => [
                                 'type' => 'object',
@@ -477,28 +477,28 @@ class MarkusDescription extends Description
                                             'properties' => [
                                                 'title' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Title'
+                                                    'sentAs' => 'Title',
                                                 ],
                                                 'url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Location'
+                                                    'sentAs' => 'Location',
                                                 ],
                                                 'thumbnail_url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'ThumbnailLocation'
+                                                    'sentAs' => 'ThumbnailLocation',
                                                 ],
                                                 'type' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'MediaResourceSubType'
+                                                    'sentAs' => 'MediaResourceSubType',
                                                 ],
                                                 'format' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'MediaResourceFormat'
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ]
+                                                    'sentAs' => 'MediaResourceFormat',
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
                             ],
                             'links' => [
                                 'type' => 'object',
@@ -515,20 +515,20 @@ class MarkusDescription extends Description
                                             'properties' => [
                                                 'title' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Title'
+                                                    'sentAs' => 'Title',
                                                 ],
                                                 'url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Location'
+                                                    'sentAs' => 'Location',
                                                 ],
                                                 'type' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'LinkType'
+                                                    'sentAs' => 'LinkType',
                                                 ],
-                                            ]
-                                        ]
-                                    ]
-                                ]
+                                            ],
+                                        ],
+                                    ],
+                                ],
                             ],
                             'gallery' => [
                                 'type' => 'object',
@@ -545,23 +545,23 @@ class MarkusDescription extends Description
                                             'properties' => [
                                                 'title' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Title'
+                                                    'sentAs' => 'Title',
                                                 ],
                                                 'url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'Location'
+                                                    'sentAs' => 'Location',
                                                 ],
                                                 'thumbnail_url' => [
                                                     'type' => 'string',
-                                                    'sentAs' => 'ThumbnailLocation'
+                                                    'sentAs' => 'ThumbnailLocation',
                                                 ],
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'ShowsOutput' => [
                     'type' => 'object',
@@ -607,15 +607,15 @@ class MarkusDescription extends Description
                                     ],
                                     'event_year' => [
                                         'type' => 'integer',
-                                        'sentAs' => 'ProductionYear'
+                                        'sentAs' => 'ProductionYear',
                                     ],
                                     'event_length' => [
                                         'type' => 'integer',
-                                        'sentAs' => 'LengthInMinutes'
+                                        'sentAs' => 'LengthInMinutes',
                                     ],
                                     'event_release_date' => [
                                         'sentAs' => 'dtLocalRelease',
-                                        '$ref' => 'DateProperty'
+                                        '$ref' => 'DateProperty',
                                     ],
                                     'event_rating_name' => [
                                         'type' => 'string',
@@ -638,7 +638,7 @@ class MarkusDescription extends Description
                                         'sentAs' => 'Genres',
                                         'filters' => [
                                             ['method' => 'explode', 'args' => [', ', '@value']],
-                                        ]
+                                        ],
                                     ],
                                     'event_id' => [
                                         'type' => 'integer',
@@ -652,8 +652,8 @@ class MarkusDescription extends Description
                                         'type' => 'object',
                                         'sentAs' => 'Images',
                                         'filters' => [
-                                            ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']]
-                                        ]
+                                            ['method' => 'Devmachine\Guzzle\Markus\Util::renameImageFormats', 'args' => ['@value']],
+                                        ],
                                     ],
                                     'presentation_description' => [
                                         'type' => 'string',
@@ -685,38 +685,38 @@ class MarkusDescription extends Description
                                     ],
                                     'date' => [
                                         '$ref' => 'DateProperty',
-                                        'sentAs' => 'dtAccounting'
+                                        'sentAs' => 'dtAccounting',
                                     ],
                                     'sales_end_time' => [
                                         'type' => 'string',
-                                        'sentAs' => 'ShowSalesEndTime'
+                                        'sentAs' => 'ShowSalesEndTime',
                                     ],
                                     'sales_end_time_utc' => [
                                         'type' => 'string',
-                                        'sentAs' => 'ShowSalesEndTimeUTC'
+                                        'sentAs' => 'ShowSalesEndTimeUTC',
                                     ],
                                     'start_time' => [
                                         'type' => 'string',
-                                        'sentAs' => 'dttmShowStart'
+                                        'sentAs' => 'dttmShowStart',
                                     ],
                                     'start_time_utc' => [
                                         'type' => 'string',
-                                        'sentAs' => 'dttmShowStartUTC'
+                                        'sentAs' => 'dttmShowStartUTC',
                                     ],
                                     'end_time' => [
                                         'type' => 'string',
-                                        'sentAs' => 'dttmShowEnd'
+                                        'sentAs' => 'dttmShowEnd',
                                     ],
                                     'end_time_utc' => [
                                         'type' => 'string',
-                                        'sentAs' => 'dttmShowEndUTC'
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                        'sentAs' => 'dttmShowEndUTC',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 }

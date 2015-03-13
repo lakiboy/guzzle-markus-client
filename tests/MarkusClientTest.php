@@ -69,7 +69,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             $query = $transaction->getRequest()->getQuery();
 
             if ($query->hasKey('area')) {
-                return $this->createResponse('schedule_' . $query->get('area'));
+                return $this->createResponse('schedule_'.$query->get('area'));
             }
 
             return $this->createResponse('schedule');
@@ -131,7 +131,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             'area' => 1,
             'event' => 2,
             'category' => 3,
-            'dummy' => 'any_value'
+            'dummy' => 'any_value',
         ]);
 
         // Test query parameters where actually sent.
@@ -147,7 +147,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             'includeLinks' => 'false',
             'includeGallery' => 'false',
             'includePictures' => 'false',
-            'listType' => 'NowInTheatres'
+            'listType' => 'NowInTheatres',
         ], $this->history->getLastRequest()->getQuery()->toArray());
     }
 
@@ -185,7 +185,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://www.forumcinemas.lv/Event/301312/', $result['items'][0]['url']);
 
         $this->assertEquals([
-            ['title' => '', 'url' => 'm3XIuNdF9XY', 'thumbnail_url' => '', 'type' => 'EventTrailer', 'format' => 'YouTubeVideo']
+            ['title' => '', 'url' => 'm3XIuNdF9XY', 'thumbnail_url' => '', 'type' => 'EventTrailer', 'format' => 'YouTubeVideo'],
         ], $result['items'][0]['videos']);
 
         $this->assertEquals([
@@ -228,7 +228,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             'dt' => '05.04.2014',
             'nrOfDays' => 12,
             'area' => 1000,
-            'eventID' => 5
+            'eventID' => 5,
         ], $this->history->getLastRequest()->getQuery()->toArray());
     }
 
@@ -266,7 +266,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
             'rating' => [
                 'name' => 'U',
                 'description' => 'Bez ierobežojuma',
-                'image_url' => 'http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png'
+                'image_url' => 'http://forumcinemaslv.blob.core.windows.net/images/rating_large_U.png',
             ],
             'images' => [
                 'micro_portrait' => 'http://forumcinemaslv.blob.core.windows.net/1012/Event_7602/portrait_micro/rio2_poster.jpg',
@@ -299,7 +299,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
 
     private function createResponse($fixture)
     {
-        $responseXml = __DIR__ . '/fixtures/' . $fixture . '.xml';
+        $responseXml = __DIR__.'/fixtures/'.$fixture.'.xml';
 
         return new Response(200, [], Stream::factory(file_get_contents($responseXml)));
     }
