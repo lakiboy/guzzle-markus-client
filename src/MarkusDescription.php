@@ -739,6 +739,14 @@ class MarkusDescription extends Description
                                         '$ref' => 'DateProperty',
                                         'sentAs' => 'dtAccounting',
                                     ],
+                                    'sales_start_time' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'ShowSalesStartTime',
+                                    ],
+                                    'sales_start_time_utc' => [
+                                        'type' => 'string',
+                                        'sentAs' => 'ShowSalesStartTimeUTC',
+                                    ],
                                     'sales_end_time' => [
                                         'type' => 'string',
                                         'sentAs' => 'ShowSalesEndTime',
