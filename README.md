@@ -41,9 +41,9 @@ This library can be installed using Composer. Add the following to your composer
 
 Some terminology explained used in MCS API:
 
- - `area` - represents a movie theatre,
+ - `area` - represents a location of theatres (usually a city),
  - `event` - represents a movie,
- - `show` - represents a show time of a movie i.e. theatre (area), auditorium, movie (event) and date/time of the show.
+ - `show` - represents a show time of a movie i.e. theatre, auditorium, movie (event) and date/time of the show.
 
 ## Sample usage
 
@@ -100,7 +100,7 @@ use Devmachine\Guzzle\Markus\MarkusClient;
 
 $client = MarkusClient::factory('http://forumcinemas.ee/xml');
 
-// Get list of theatres
+// Get list of locations.
 $result = $client->areas();
 
 // Get list of languages.

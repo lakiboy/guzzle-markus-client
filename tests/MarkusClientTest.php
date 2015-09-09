@@ -286,7 +286,7 @@ class MarkusClientTest extends \PHPUnit_Framework_TestCase
         ], $result['items'][0]['event']);
 
         // Sections.
-        $this->assertEquals(['id' => 1032, 'name' => 'Kino Citadele'], $result['items'][0]['area']);
+        $this->assertEquals(['id' => 1032, 'name' => 'Kino Citadele'], $result['items'][0]['theatre']);
         $this->assertEquals(['id' => 1197, 'name' => 'Auditorija 2', 'full_name' => 'Kino Citadele, Auditorija 2'], $result['items'][0]['auditorium']);
         $this->assertEquals(['method' => '3D', 'description' => '3D, Latviešu valodā'], $result['items'][0]['presentation']);
     }

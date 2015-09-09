@@ -632,7 +632,7 @@ class MarkusDescription extends Description
                                 'sentAs' => 'Show',
                                 'filters' => [
                                     ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['event_rating']]],
-                                    ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['event', 'presentation', 'area', 'auditorium']]],
+                                    ['method' => 'Devmachine\Guzzle\Markus\Util::groupParameters', 'args' => ['@value', ['event', 'presentation', 'theatre', 'auditorium']]],
                                     ['method' => 'Devmachine\Guzzle\Markus\Util::fixShowEndTimeUTC', 'args' => ['@value']],
                                 ],
                                 'additionalProperties' => false,
@@ -715,11 +715,11 @@ class MarkusDescription extends Description
                                         'type' => 'string',
                                         'sentAs' => 'PresentationMethod',
                                     ],
-                                    'area_id' => [
+                                    'theatre_id' => [
                                         'type' => 'integer',
                                         'sentAs' => 'TheatreID',
                                     ],
-                                    'area_name' => [
+                                    'theatre_name' => [
                                         'type' => 'string',
                                         'sentAs' => 'Theatre',
                                     ],
